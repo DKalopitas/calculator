@@ -2,3 +2,28 @@ html, body {
     margin: 0;
     height: 100%;
 }
+
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.calculator {
+    display: grid;
+    text-align: center;
+}
+
+.display {
+    border-style: solid;
+    border-width: 2px;
+    text-align: end;
+    padding: 10px;
+}
+
+button {
+    padding: 15px;
+    width: 80px;
+    font-size: 25px;
+}
