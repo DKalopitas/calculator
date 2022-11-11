@@ -34,6 +34,7 @@ function addOnDisplay(data) {
     const display = document.querySelector('.display');
     if (typeof(data) === 'number') {
         display.textContent = data;
+        result = true;
         return;
     }
     if (data.getAttribute('class') === 'number') {
@@ -49,12 +50,17 @@ function clearDisplay() {
     const display = document.querySelector('.display');
     display.textContent = '';
     numArray = [];
+    result = false;
     currNumber = '';
 }
 
+let result;
 let currNumber = '';
 const numButtons = document.querySelectorAll('.number');
 numButtons.forEach(button => {button.addEventListener('click', ()=> {
+    if (result) {
+        clearDisplay();
+    }
     addOnDisplay(button);
     currNumber += button.textContent;
 })})
@@ -62,6 +68,9 @@ numButtons.forEach(button => {button.addEventListener('click', ()=> {
 let numArray = [];
 const operatorButtons = document.querySelectorAll('.operator');
 operatorButtons.forEach(button => button.addEventListener('click', ()=> {
+    if(result) {
+        clearDisplay();
+    }
     addOnDisplay(button);
     currNumber = parseInt(currNumber);
     if (numArray.length > 0) {
