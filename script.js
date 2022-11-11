@@ -68,9 +68,6 @@ numButtons.forEach(button => {button.addEventListener('click', ()=> {
 let numArray = [];
 const operatorButtons = document.querySelectorAll('.operator');
 operatorButtons.forEach(button => button.addEventListener('click', ()=> {
-    if(result) {
-        clearDisplay();
-    }
     addOnDisplay(button);
     currNumber = parseInt(currNumber);
     if (numArray.length > 0) {
@@ -84,6 +81,7 @@ operatorButtons.forEach(button => button.addEventListener('click', ()=> {
         }
         numArray.push(operate(numArray.pop(), numArray.pop(), currNumber));
     } else {
+        result = false;
         numArray.push(currNumber);
     }
     numArray.push(button.textContent);
@@ -92,6 +90,7 @@ operatorButtons.forEach(button => button.addEventListener('click', ()=> {
 
 function equalsTo() {
     numArray.push(parseInt(currNumber));
+    currNumber = '';
     let op, num1, num2;
     while (numArray.length > 1) {
         num2 = numArray.pop();
@@ -99,7 +98,7 @@ function equalsTo() {
         num1 = numArray.pop(); 
         numArray.push(operate(op, num1, num2));
     }
-    addOnDisplay(numArray[numArray.length-1]);
-    currNumber = '';
-    // numArray = [];
+    currNumber = numArray[numArray.length-1];
+    numArray.pop();
+    addOnDisplay(currNumber);
 }
