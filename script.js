@@ -21,11 +21,76 @@ function operate(operator, num1, num2) {
     if (operator === '-') {
         return(subtract(num1, num2));
     }
-    if (operator === '*') {
+    if (operator === '×') {
         return(multiply(num1, num2));
     }
-    if (operator === '/') {
+    if (operator === '÷') {
         return(divide(num1, num2));
     }
     return;
+}
+
+function addOnDisplay(data) {
+    const display = document.querySelector('.display');
+    if (typeof(data) === 'number') {
+        display.textContent = data;
+        return;
+    }
+    if (data.getAttribute('class') === 'number') {
+        display.textContent += data.textContent;
+        return;
+    }
+    if (display.textContent !== '') {
+        display.textContent += ` ${data.textContent} `;
+    }
+}
+
+function clearDisplay() {
+    const display = document.querySelector('.display');
+    display.textContent = '';
+    numArray = [];
+    currNumber = '';
+}
+
+let currNumber = '';
+const numButtons = document.querySelectorAll('.number');
+numButtons.forEach(button => {button.addEventListener('click', ()=> {
+    addOnDisplay(button);
+    currNumber += button.textContent;
+})})
+
+let numArray = [];
+const operatorButtons = document.querySelectorAll('.operator');
+operatorButtons.forEach(button => button.addEventListener('click', ()=> {
+    addOnDisplay(button);
+    currNumber = parseInt(currNumber);
+    if (numArray.length > 0) {
+        if (button.textContent === '×' || button.textContent === '÷') {
+            if (numArray[numArray.length-1] === '+' || numArray[numArray.length-1] === '-') {
+                numArray.push(currNumber);
+                numArray.push(button.textContent);
+                currNumber = '';
+                return;
+            }
+        }
+        numArray.push(operate(numArray.pop(), numArray.pop(), currNumber));
+    } else {
+        numArray.push(currNumber);
+    }
+    numArray.push(button.textContent);
+    currNumber = '';
+}))
+
+function equalsTo() {
+    numArray.push(parseInt(currNumber));
+    let op, num1, num2;
+    while (numArray.length > 1) {
+        num2 = numArray.pop();
+        op = numArray.pop();
+        num1 = numArray.pop(); 
+        numArray.push(operate(op, num1, num2));
+    }
+    addOnDisplay(numArray[numArray.length-1]);
+    currNumber = '';
+    // numArray = [];
 }

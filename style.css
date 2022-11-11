@@ -12,7 +12,6 @@ body {
 
 .calculator {
     display: grid;
-    text-align: center;
 }
 
 .display {
@@ -20,6 +19,7 @@ body {
     border-width: 2px;
     text-align: end;
     padding: 10px;
+    font-size: 30px;
 }
 
 button {
