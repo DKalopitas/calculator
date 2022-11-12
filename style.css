@@ -39,7 +39,7 @@ button {
     font-size: 25px;
     border-style: solid;
     border-color: transparent;
-    border-width: 2px;
+    border-width: 3px;
     border-radius: 5px;
 }
 
@@ -48,7 +48,7 @@ button:hover {
 }
 
 button:active {
-    border: solid 2px;
+    border-color: rgb(70, 70, 70);
     background-color: rgb(200, 200, 200);
 }
 
