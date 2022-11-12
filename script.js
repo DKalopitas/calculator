@@ -46,6 +46,11 @@ function addOnDisplay(data) {
     }
 }
 
+function removeLast() {
+    const display = document.querySelector('.display');
+    display.textContent = display.textContent.slice(0, -3);
+}
+
 function clearDisplay() {
     const display = document.querySelector('.display');
     display.textContent = '';
@@ -67,7 +72,16 @@ numButtons.forEach(button => {button.addEventListener('click', ()=> {
 
 let numArray = [];
 const operatorButtons = document.querySelectorAll('.operator');
-operatorButtons.forEach(button => button.addEventListener('click', ()=> {
+operatorButtons.forEach(button => button.addEventListener('click', ()=> {  
+    if (currNumber === '') {
+        if (numArray.length > 1) {
+            numArray.pop();
+            numArray.push(button.textContent);
+        }
+        removeLast();
+        addOnDisplay(button);
+        return;
+    }
     addOnDisplay(button);
     currNumber = parseInt(currNumber);
     if (numArray.length > 0) {
