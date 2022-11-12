@@ -58,7 +58,7 @@ let result;
 let currNumber = '';
 const numButtons = document.querySelectorAll('.number');
 numButtons.forEach(button => {button.addEventListener('click', ()=> {
-    if (result) {
+    if (result || currNumber === '0') {
         clearDisplay();
     }
     addOnDisplay(button);
@@ -98,7 +98,6 @@ function equalsTo() {
         num1 = numArray.pop(); 
         numArray.push(operate(op, num1, num2));
     }
-    currNumber = numArray[numArray.length-1];
-    numArray.pop();
+    currNumber = numArray.pop();
     addOnDisplay(currNumber);
 }
