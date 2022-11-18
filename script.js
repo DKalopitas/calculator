@@ -103,6 +103,9 @@ operatorButtons.forEach(button => button.addEventListener('click', ()=> {
 }))
 
 function equalsTo() {
+    if (currNumber === '') {
+        return;
+    }
     numArray.push(parseInt(currNumber));
     currNumber = '';
     let op, num1, num2;
