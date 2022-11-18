@@ -43,16 +43,28 @@ button {
     border-radius: 5px;
 }
 
-button:hover {
+button:active {
+    border-color: rgb(40, 40, 40);
+}
+
+.number {
     background-color: rgb(230, 230, 230);
 }
 
-button:active {
-    border-color: rgb(70, 70, 70);
+.number:hover {
     background-color: rgb(200, 200, 200);
 }
 
+.operator {
+    background-color: rgb(60, 80, 100);
+}
+
+.operator:hover {
+    background-color: rgb(80, 100, 120);
+}
+
 .equals {
+    background-color: rgb(60, 80, 100);
     grid-column: 3 / 4;
     grid-row: 6 / 5;
 }

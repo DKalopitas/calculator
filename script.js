@@ -72,7 +72,15 @@ numButtons.forEach(button => {button.addEventListener('click', ()=> {
 
 let numArray = [];
 const operatorButtons = document.querySelectorAll('.operator');
-operatorButtons.forEach(button => button.addEventListener('click', ()=> {  
+operatorButtons.forEach(button => button.addEventListener('click', ()=> {
+    if (button.textContent === '=') {
+        equalsTo();
+        return;
+    }
+    if (button.textContent === 'CE') {
+        clearDisplay();
+        return;
+    }
     if (currNumber === '') {
         if (numArray.length > 1) {
             numArray.pop();
