@@ -32,6 +32,8 @@ body {
     border-radius: 5px;
     padding: 10px;
     font-size: 30px;
+    word-wrap: break-word;
+    word-break: break-all;
 }
 
 button {
